@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.2/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-[95%] mx-auto" onload="loadData()">
+<header>
+  <!-- navbar start -->
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a class="btn btn-ghost normal-case text-xl bg-blue-600 text-white">News</a>
+      <a class="btn btn-ghost normal-case text-xl text-blue-800">Portal</a>
+    </div>
+    <div class="flex-none">
+      <div class="text-blue-700 mx-5 hover:border-b-2 border-indigo-500 font-semibold">News</div>
+      <div class="text-blue-400 mr-5 hover:border-b-2 border-indigo-500">Blogs</div>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img src="assets/Avatar.png" />
+          </div>
+        </label>
+        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a class="justify-between">
+              Profile
+              <span class="badge">New</span>
+            </a>
+          </li>
+          <li><a>Settings</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- navbar end -->
+  <hr />
+</header>
+  <main>
+  <!-- category section start-->
+    <section id="categoryContainer" class="my-5 py-3 px-2 bg-slate-200 rounded-lg flex justify-between">
+      
+    </section>
+  <!-- category section end-->
+
+<!-- my-modal-5 start -->
+
+<input type="checkbox" id="my-modal-5" class="modal-toggle" />
+<div class="modal">
+  <div id="modal-body" class="modal-box w-11/12 max-w-5xl">
+    
+  </div>
+  <div class="modal-action">
+    <label for="my-modal-5" class="btn">close!</label>
+  </div>
+</div>
+ 
+<!-- my-modal-5 end -->
+
+ 
+    <!-- dainamic count section start-->
+    <section id="categoryContainer" class="my-2 p-4 bg-slate-100 rounded-lg align-middle" ">
+      <p><span id="countOfCateryPost">0</span> items found for category <span id="categoryName"></span></p>
+    </section>
+    <!-- dainamic count section end-->
+    <div id="all-news-Body" class="cardBody " >
+
+    </div>
+      <!-- card  section end -->
+
+  </main>
+
+  <!-- <script></script> -->
+  <script src="scripts/news-portal.js"></script>
+</body>
+</html>
+
+
+
