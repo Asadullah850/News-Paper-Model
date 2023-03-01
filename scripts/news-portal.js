@@ -1,5 +1,3 @@
-
-
 const loadData = async () =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`
     const res =await fetch(url)
@@ -16,7 +14,6 @@ const showData = (objData) =>{
 
     });
 }
-
 
 
 const fetchCategoryNews = (category_id , category_name) =>{
@@ -46,13 +43,13 @@ const showCarterogyData = (data,category_name) =>{
         <p>${details.slice(0,300)}</p>
 
         <div id="cardFooter" class="mt-4">
-          <p class="mb-3">${details.slice(300,400)}...</p>
+          <p class="mb-3">${details.slice(300,400) ? details.slice(300,400) : 'Not available'}...</p>
           <div class="card-actions flex justify-between">    
             <div class="flex">
                 <img src="${author.img}" class="h-10 w-10 rounded-full" alt="" srcset="" >
                 <div class="ml-2">
-                    <p>${author.name ? author.name :  "Not available"}<p/>
-                    <p>${author.published_date}<p/>
+                    <p>${author.name ? author.name :  'Not available'}<p/>
+                    <p>${author.published_date ? author.published_date  : 'Not available'}<p/>
                 </div>
             </div>
             <div class="flex"> 
@@ -64,7 +61,6 @@ const showCarterogyData = (data,category_name) =>{
             </div>
 
             <div class="">
-<!-- The button to open modal -->
 
                 <label  for="my-modal-5" class="btn bg-slate-100 hover:bg-blue-700" onclick="singleDataFetch('${_id}')">
                  <img class="h-6 w-6 mx-3" src="assets/arrow_right_icon.png" alt="" srcset="">
@@ -138,7 +134,8 @@ const showSingleData = singleData => {
 
 }
 
-// showCarterogyData(3,)
+
+// showCarterogyData (3,'02')
 // loadData()
 
 
