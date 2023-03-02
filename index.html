@@ -52,14 +52,14 @@
       <!-- select -->
       <select class="select select-success  max-w-xs">
         <option disabled selected>Default</option>
-        <option>One Star</option>
+        <option onclick="ratingCount()">One Star</option>
         <option>Three Star</option>
         <option>Four Star</option>
       </select>
     </div>
     <div class="">
-      <button class="btn bg-blue-600">Today’s Pick</button>
-      <button class="btn btn-outline btn-primary text-blue-700">Trending</button>
+      <button onclick="todayPick()" class="btn bg-blue-600">Today’s Pick</button>
+      <button onclick="trending()" class="btn btn-outline btn-primary text-blue-700">Trending</button>
     </div>
   </div>
   <!-- tranding and others -->

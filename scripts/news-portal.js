@@ -1,3 +1,4 @@
+let fetchData =[];
 const loadData = async () =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`
     const res =await fetch(url)
@@ -22,8 +23,11 @@ const fetchCategoryNews = (category_id , category_name) =>{
         fetch(url)
         .then(res => res.json())
         .then(data => {
+            fetchData = data.data
             showCarterogyData(data.data, category_name)
+            
         });
+        
 }
 const showCarterogyData = (data,category_name) =>{
 // console.log(data,category_name);
@@ -32,24 +36,25 @@ const showCarterogyData = (data,category_name) =>{
     document.getElementById('all-news-Body').innerHTML = '';
     
     data.forEach((singleNews) => {
-        const {_id,author,details,rating,title,total_view,thumbnail_url} =singleNews;
+        const {_id,author,details,rating,title,total_view,thumbnail_url,others_info} =singleNews;
         // console.log(singleNews._id);
         
     document.getElementById('all-news-Body').innerHTML += `
     <div class="card card-side bg-base-100 shadow-xl my-5">
       <img src="${thumbnail_url}" class="" alt="Movie"/>
       <div class="card-body">
-        <h2 class="card-title">${title}</h2>
+        <h2 class="card-title">${title} <span id="trending" class=" bg-yellow-400 text-sm rounded p-1">${others_info.is_trending ? 'Trending' : others_info.is_todays_pick ? 'Todays Pick' : 'Not Available'}</span> 
+         </h2>
         <p>${details.slice(0,300)}</p>
 
         <div id="cardFooter" class="mt-4">
-          <p class="mb-3">${details.slice(300,400) ? details.slice(300,400) : 'Not available'}...</p>
+          <p class="mb-3">${details.slice(300,400) ? details.slice(300,400) : 'Not Available'}...</p>
           <div class="card-actions flex justify-between">    
             <div class="flex">
                 <img src="${author.img}" class="h-10 w-10 rounded-full" alt="" srcset="" >
                 <div class="ml-2">
-                    <p>${author.name ? author.name :  'Not available'}<p/>
-                    <p>${author.published_date ? author.published_date  : 'Not available'}<p/>
+                    <p>${author.name ? author.name :  'Not Available'}<p/>
+                    <p>${author.published_date ? author.published_date  : 'Not Available'}<p/>
                 </div>
             </div>
             <div class="flex"> 
@@ -97,23 +102,23 @@ const singleDataFetch = news_id => {
     // console.log(url);
 }
 const showSingleData = singleData => {
-    // console.log(singleData)
     singleData.forEach((modalNews) => {
-    const {_id,author,details,rating,title,total_view,thumbnail_url} =modalNews;
+    const {author,details,rating,title,total_view,others_info} =modalNews;
     // console.log(singleNews._id);
     console.log(author);
     document.getElementById('modal-body').innerHTML =`
        
     <div class=" card card-side bg-base-100 shadow-xl my-5">
     <div class="card-body">
-      <h2 class="card-title uppercase">${title}</h2>
+      <h2 class="card-title uppercase">${title}
+      <h2 class="card-title">${title} <span class="bg-yellow-400 text-sm rounded p-1">${others_info.is_trending ? 'Trending' : "Not Available"}</span></h2>
       <p>${details}</p>
       <div id="cardFooter" class="mt-4">
         <div class="card-actions flex justify-between">    
           <div class="flex">
               <img src="${author.img}" class="h-10 w-10 rounded-full" alt="" srcset="" >
               <div class="ml-2">
-                  <p>${author.name ? author.name :  "Not available"}<p/>
+                  <p>${author.name ? author.name :  "Not Available"}<p/>
                   <p>${author.published_date}<p/> 
               </div>
           </div>
@@ -133,8 +138,25 @@ const showSingleData = singleData => {
     })
 
 }
-
-
+// tranding button function
+const trending = () =>{
+    const trendingData = fetchData.filter(fetchData => fetchData.others_info.is_trending === true)
+    // console.log(trendingData);
+    const categoryName = document.getElementById('categoryName').innerText;    
+    showCarterogyData(trendingData,categoryName);
+    // for (let trendingData = 0; trendingData < trendingData.length; trendingData++) {
+    //     const trendingClass = document.getElementById('trending');
+    //     trendingClass.classList.remove('hidden');
+    //     console.log(trendingData); 
+    // }
+    
+}
+// today's Pick button workable using onclick function
+const todayPick = () =>{
+    const todayPickData = fetchData.filter(todayPickData => todayPickData.others_info.is_todays_pick === true)
+    const categoryName = document.getElementById('categoryName').innerText;    
+    showCarterogyData(todayPickData,categoryName);
+}
 // showCarterogyData (3,'02')
 // loadData()
 
